@@ -13,4 +13,4 @@ for i in range(100, 1000):
             a = i
             b = x
 
-print(f"{a} * {b} = {largest} is the largest palindrome")
+print(largest)
