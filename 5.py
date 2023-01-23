@@ -1,7 +1,6 @@
 x = 20
 
 while True:
-    # Some factors can be removed because e.g. if x % 20 == 0 then x % 2 == 0 and x % 10 == 0
     if (
         x % 11 == 0
         and x % 13 == 0
@@ -14,6 +13,6 @@ while True:
     ):
         break
     else:
-        x += 20  # 20 is the largest factor
+        x += 20
 
 print(x)
