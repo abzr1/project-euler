@@ -1,5 +1,5 @@
 <h1 align="center">
-    <code>project_euler</code>
+    project_euler
 </h1>
 
 <p align="center">
