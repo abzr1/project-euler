@@ -1,7 +1,3 @@
-<h1 align="center">
-    project-euler
-</h1>
+# project-euler
 
-<p align="center">
-    My solutions to <a href="https://projecteuler.net">Project Euler</a>.
-</p>
+My solutions to [Project Euler](https://projecteuler.net).
