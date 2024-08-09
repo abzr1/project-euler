@@ -8,6 +8,6 @@ while b < 4000000:
 
     temp = a
     a = b
-    b = temp + b
+    b += temp
 
 print(c)
