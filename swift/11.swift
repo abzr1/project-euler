@@ -75,7 +75,6 @@ for i in 0..<20 {
 }
 
 // diagonally right and down
-
 for i in 0..<20 {
     for j in 0..<20 {
         if let k = numbers[i + 1]?[j + 1] {
@@ -91,7 +90,6 @@ for i in 0..<20 {
 }
 
 // diagonally left and down
-
 for i in 0..<20 {
     for j in 0..<20 {
         if let k = numbers[i + 1]?[j - 1] {
