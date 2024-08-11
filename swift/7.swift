@@ -1,33 +1,25 @@
-func primeFactors(_ n: Int) -> [Int] {
-    var i = n
-    var j = 2
+func isPrime(_ n: Int) -> Bool {
+    if n < 2 {
+        return false
+    }
 
-    var factors: [Int] = []
+    var i = 2
 
-    while j * j <= i {
-        if i % j == 0 {
-            i /= j
-            factors.append(j)
+    while i * i <= n {
+        if n % i == 0 {
+            return false
         } else {
-            j += 1
+            i += 1
         }
     }
 
-    if i > 1 {
-        factors.append(i)
-    }
-
-    return factors
-}
-
-func isPrime(_ n: Int) -> Bool {
-    return primeFactors(n).count == 1
+    return true
 }
 
 var primes: [Int] = []
 var i = 0
 
-while primes.count < 10001 {
+while primes.count < 10_001 {
     if isPrime(i) {
         primes.append(i)
     }
