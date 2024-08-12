@@ -20,16 +20,11 @@ fn main() {
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48";
 
-    let mut nums_arr: Vec<Vec<i32>> = vec![];
+    let mut nums_arr = [[0; 20]; 20];
 
     for (i, line) in nums_str.lines().enumerate() {
-        match nums_arr.get(i) {
-            Some(_) => (),
-            None => nums_arr.push(vec![]),
-        }
-
-        for num in line.split_whitespace() {
-            nums_arr[i].push(num.parse::<i32>().unwrap());
+        for (j, num) in line.split_whitespace().enumerate() {
+            nums_arr[i][j] = num.parse::<i32>().unwrap();
         }
     }
 
@@ -37,26 +32,15 @@ fn main() {
 
     // across
     for (i, row) in nums_arr.iter().enumerate() {
-        for (j, num) in row.iter().enumerate() {
-            let val1 = *num;
+        for (j, _) in row.iter().enumerate() {
+            if j >= 17 {
+                continue;
+            }
 
-            let val2 = if let Some(x) = nums_arr[i].get(j + 1) {
-                *x
-            } else {
-                0
-            };
-
-            let val3 = if let Some(x) = nums_arr[i].get(j + 2) {
-                *x
-            } else {
-                0
-            };
-
-            let val4 = if let Some(x) = nums_arr[i].get(j + 3) {
-                *x
-            } else {
-                0
-            };
+            let val1 = nums_arr[i][j];
+            let val2 = nums_arr[i][j + 1];
+            let val3 = nums_arr[i][j + 2];
+            let val4 = nums_arr[i][j + 3];
 
             if val1 * val2 * val3 * val4 > max_product {
                 max_product = val1 * val2 * val3 * val4;
@@ -66,26 +50,15 @@ fn main() {
 
     // down
     for (i, row) in nums_arr.iter().enumerate() {
-        for (j, num) in row.iter().enumerate() {
-            let val1 = *num;
+        for (j, _) in row.iter().enumerate() {
+            if i >= 17 {
+                continue;
+            }
 
-            let val2 = if let Some(x) = nums_arr.get(i + 1) {
-                x[j]
-            } else {
-                0
-            };
-
-            let val3 = if let Some(x) = nums_arr.get(i + 2) {
-                x[j]
-            } else {
-                0
-            };
-
-            let val4 = if let Some(x) = nums_arr.get(i + 3) {
-                x[j]
-            } else {
-                0
-            };
+            let val1 = nums_arr[i][j];
+            let val2 = nums_arr[i + 1][j];
+            let val3 = nums_arr[i + 2][j];
+            let val4 = nums_arr[i + 3][j];
 
             if val1 * val2 * val3 * val4 > max_product {
                 max_product = val1 * val2 * val3 * val4;
@@ -95,38 +68,15 @@ fn main() {
 
     // diagonally right and down
     for (i, row) in nums_arr.iter().enumerate() {
-        for (j, num) in row.iter().enumerate() {
-            let val1 = *num;
+        for (j, _) in row.iter().enumerate() {
+            if i >= 17 || j >= 17 {
+                continue;
+            }
 
-            let val2 = if let Some(x) = nums_arr.get(i + 1) {
-                if let Some(y) = x.get(j + 1) {
-                    *y
-                } else {
-                    0
-                }
-            } else {
-                0
-            };
-
-            let val3 = if let Some(x) = nums_arr.get(i + 2) {
-                if let Some(y) = x.get(j + 2) {
-                    *y
-                } else {
-                    0
-                }
-            } else {
-                0
-            };
-
-            let val4 = if let Some(x) = nums_arr.get(i + 3) {
-                if let Some(y) = x.get(j + 3) {
-                    *y
-                } else {
-                    0
-                }
-            } else {
-                0
-            };
+            let val1 = nums_arr[i][j];
+            let val2 = nums_arr[i + 1][j + 1];
+            let val3 = nums_arr[i + 2][j + 2];
+            let val4 = nums_arr[i + 3][j + 3];
 
             if val1 * val2 * val3 * val4 > max_product {
                 max_product = val1 * val2 * val3 * val4;
@@ -136,43 +86,18 @@ fn main() {
 
     // diagonally left and down
     for (i, row) in nums_arr.iter().enumerate() {
-        for (j, num) in row.iter().enumerate() {
-            let val1 = *num;
+        for (j, _) in row.iter().enumerate() {
+            if i >= 17 || j <= 2 {
+                continue;
+            }
 
-            if j >= 3 {
-                let val2 = if let Some(x) = nums_arr.get(i + 1) {
-                    if let Some(y) = x.get(j - 1) {
-                        *y
-                    } else {
-                        0
-                    }
-                } else {
-                    0
-                };
+            let val1 = nums_arr[i][j];
+            let val2 = nums_arr[i + 1][j - 1];
+            let val3 = nums_arr[i + 2][j - 2];
+            let val4 = nums_arr[i + 3][j - 3];
 
-                let val3 = if let Some(x) = nums_arr.get(i + 2) {
-                    if let Some(y) = x.get(j - 2) {
-                        *y
-                    } else {
-                        0
-                    }
-                } else {
-                    0
-                };
-
-                let val4 = if let Some(x) = nums_arr.get(i + 3) {
-                    if let Some(y) = x.get(j - 3) {
-                        *y
-                    } else {
-                        0
-                    }
-                } else {
-                    0
-                };
-
-                if val1 * val2 * val3 * val4 > max_product {
-                    max_product = val1 * val2 * val3 * val4;
-                }
+            if val1 * val2 * val3 * val4 > max_product {
+                max_product = val1 * val2 * val3 * val4;
             }
         }
     }
