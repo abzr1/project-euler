@@ -32,7 +32,7 @@ fn main() {
 
     // across
     for (i, row) in nums_arr.iter().enumerate() {
-        for (j, _) in row.iter().enumerate() {
+        for j in 0..row.len() {
             if j >= 17 {
                 continue;
             }
@@ -50,7 +50,7 @@ fn main() {
 
     // down
     for (i, row) in nums_arr.iter().enumerate() {
-        for (j, _) in row.iter().enumerate() {
+        for j in 0..row.len() {
             if i >= 17 {
                 continue;
             }
@@ -68,7 +68,7 @@ fn main() {
 
     // diagonally right and down
     for (i, row) in nums_arr.iter().enumerate() {
-        for (j, _) in row.iter().enumerate() {
+        for j in 0..row.len() {
             if i >= 17 || j >= 17 {
                 continue;
             }
@@ -86,7 +86,7 @@ fn main() {
 
     // diagonally left and down
     for (i, row) in nums_arr.iter().enumerate() {
-        for (j, _) in row.iter().enumerate() {
+        for j in 0..row.len() {
             if i >= 17 || j <= 2 {
                 continue;
             }
