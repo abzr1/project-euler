@@ -13,11 +13,14 @@ fn main() {
 }
 
 fn is_palindrome(n: i32) -> bool {
-    n == n
-        .to_string()
-        .chars()
-        .rev()
-        .collect::<String>()
-        .parse::<i32>()
-        .unwrap()
+    let mut m = n;
+    let mut l = 0;
+
+    while m > 0 {
+        l *= 10;
+        l += m % 10;
+        m /= 10;
+    }
+
+    l == n
 }
