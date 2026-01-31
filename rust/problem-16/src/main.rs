@@ -1,5 +1,5 @@
 fn main() {
-    let mut a = BigInt::new([0; 305]);
+    let mut a = BigInt::new(&[0; 305]);
     a.digits[0] = 2;
 
     let mut sum = 0;
@@ -15,8 +15,8 @@ struct BigInt {
 }
 
 impl BigInt {
-    fn new(digits: [u8; 305]) -> Self {
-        Self { digits }
+    fn new(digits: &[u8; 305]) -> Self {
+        Self { digits: *digits }
     }
 
     fn add(self, other: Self) -> Self {
@@ -53,7 +53,7 @@ impl BigInt {
     }
 
     fn mul(self, mut other: Self) -> Self {
-        let mut new = BigInt::new([0; 305]);
+        let mut new = BigInt::new(&[0; 305]);
 
         while other.decr() {
             new = new.add(self);
